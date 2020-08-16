@@ -4,12 +4,13 @@ namespace gamejam {
 
     //%block
     export function roomFinished(win:boolean) {
-        if (counter == 0) {
-            foobar2.init()
-            counter += 1
-        } else {
-            game.over(win)
-        }
+        game.over(win)
+        // if (counter == 0) {
+        //     foobar2.init()
+        //     counter += 1
+        // } else {
+        //     game.over(win)
+        // }
     }
 
 }
