@@ -32,6 +32,8 @@ namespace gamejam {
     }
 
     //%block
+    //% blockId=gamejamoninterval block="on game update every %period=timePicker ms"
+    //% blockAllowMultiple=1
     export function onMyGameUpdateInterval(time :number, handler:()=>void) {
         let registerCounter = counter
         game.onUpdateInterval(time, function() {
