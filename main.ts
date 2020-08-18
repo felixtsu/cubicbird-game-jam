@@ -1,16 +1,44 @@
 namespace gamejam {
+    let counter:number
+    let handlers:(()=>void)[] = []
 
-    let counter = 0
+    export function registerRoom(handler :()=>void) {
+        handlers.push(handler)
+    }
+
+    export function startGameJam() {
+        counter = 0
+        handlers[0]()
+    }
 
     //%block
     export function roomFinished(win:boolean) {
-        game.over(win)
-        // if (counter == 0) {
-        //     foobar2.init()
-        //     counter += 1
-        // } else {
-        //     game.over(win)
-        // }
+        if (!win) {
+            // restart current room
+            console.log("room " + (counter +1) + " failed, restart room.")
+            handlers[counter]()
+        } else {
+            if (counter == handlers.length - 1) {
+                console.log("all rooms won.")
+                game.over(true)
+            } else {
+                console.log("room " + (counter + 1) + " won.")
+                counter ++
+                control.runInParallel(function() {
+                    handlers[counter]()    
+                })
+            }
+        }
+    }
+
+    //%block
+    export function onMyGameUpdateInterval(time :number, handler:()=>void) {
+        let registerCounter = counter
+        game.onUpdateInterval(time, function() {
+            if (registerCounter == counter) {
+                handler()
+            }
+        })
     }
 
 }
