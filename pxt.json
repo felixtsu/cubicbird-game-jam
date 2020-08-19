@@ -8,9 +8,7 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md",
-        "foobar.1.ts",
-        "foobar.2.ts"
+        "README.md"
     ],
     "testFiles": [
         "test.ts"

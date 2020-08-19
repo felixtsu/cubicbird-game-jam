@@ -22,6 +22,93 @@ namespace gamejam {
         return array;
     }
 
+    function drawIntro() {  
+        scene.backgroundImage().fill(13)        
+        scene.backgroundImage().printCenter('Cubicbird Game Jam', 50, 2, image.font8)
+        scene.backgroundImage().printCenter(' -- Room -- ', 70, 12, image.font8)
+        scene.backgroundImage().drawTransparentImage(img`
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . . 5 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . 5 5 4 4 4 4 4 f f 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . 5 5 5 4 4 4 4 4 f f 4 4 4 4 4 9 9 9 9 9 9 9 9 9 9 9 9 .
+            . . . 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 9 9 9 . .
+            . . 5 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 9 9 . . .
+            . 5 5 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 9 . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 4 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 4 4 4 4 4 . . . . . . .
+            . . . . . . . 9 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . . 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . . . 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        `, 64, 8)
+        scene.backgroundImage().printCenter('Press Any Button', 90, 2, image.font8)
+        game.waitAnyButton()
+        scene.backgroundImage().fill(0)
+    }
+
+    export function drawNextRoom(author:string, roomTitle:string) {
+        scene.backgroundImage().fill(13)        
+        scene.backgroundImage().printCenter(author, 40, 2, image.font12)
+        scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
+        scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font12)
+        scene.backgroundImage().drawTransparentImage(img`
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . . 5 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . . 5 5 4 4 4 4 4 f f 4 4 4 4 4 4 4 4 4 4 4 . . . . . . .
+            . . . . 5 5 5 4 4 4 4 4 f f 4 4 4 4 4 9 9 9 9 9 9 9 9 9 9 9 9 .
+            . . . 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 9 9 9 . .
+            . . 5 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 9 9 . . .
+            . 5 5 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 9 . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 9 . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 9 . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 9 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 9 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 9 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 9 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 9 4 4 4 4 . . . . . . .
+            . . . . . . . 4 4 4 4 4 4 4 4 4 4 4 4 9 4 4 4 4 4 . . . . . . .
+            . . . . . . . 9 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . . 9 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . . . 9 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        `, 64, 8)
+        scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
+        game.waitAnyButton()
+        scene.backgroundImage().fill(0)
+    }
+
     export function registerRoom(handler :()=>void) {
         handlers.push(handler)
     }
@@ -29,6 +116,7 @@ namespace gamejam {
     export function startGameJam() {
         counter = 0
         handlers = shuffle(handlers)
+        drawIntro()
         handlers[0]()
     }
 
@@ -36,14 +124,11 @@ namespace gamejam {
     export function roomFinished(win:boolean) {
         if (!win) {
             // restart current room
-            console.log("room " + (counter +1) + " failed, restart room.")
             handlers[counter]()
         } else {
             if (counter == handlers.length - 1) {
-                console.log("all rooms won.")
                 game.over(true)
             } else {
-                console.log("room " + (counter + 1) + " won.")
                 counter ++
                 control.runInParallel(function() {
                     handlers[counter]()    
