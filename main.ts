@@ -24,7 +24,6 @@ namespace gamejam {
 
     function drawBackground() {
         scene.backgroundImage().fill(13)     
-        // scene.backgroundImage().fillCircle(80, 22, 20, 1)
         scene.backgroundImage().drawTransparentImage(img`
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -109,8 +108,12 @@ namespace gamejam {
 
     //%block
     export function roomFinished(win:boolean) {
+        // clear all scheduled run later tasks
+        runLaterHandlers = {}
+
         if (!win) {
             // restart current room
+            // you die, try again
             handlers[counter]()
         } else {
             if (counter == handlers.length - 1) {
@@ -131,6 +134,19 @@ namespace gamejam {
         let registerCounter = counter
         game.onUpdateInterval(time, function() {
             if (registerCounter == counter) {
+                handler()
+            }
+        })
+    }
+
+    let runLaterHandlers:SparseArray<boolean>={}
+
+    export function runLater(time:number, handler:()=>void) {
+        let genId = randint(0, 99999999999999999999999)
+        runLaterHandlers[genId] = true;
+        control.runInParallel(function() {
+            pause(time)
+            if(runLaterHandlers[genId]) {
                 handler()
             }
         })
