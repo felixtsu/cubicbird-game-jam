@@ -59,6 +59,28 @@ namespace gamejam {
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
         `, 64, 8)  
+        drawCubicbirdLogo()
+    }
+
+    function drawCubicbirdLogo() {
+
+        const cubicbirdLogo = img`
+            . . . . . 9 9 9 9 . . . . . . . . 9 . . . . . . . . . . . . . . . . . . . 9 9 9 . . . . . . . . . . . . . . . . 9 . . . . . . .
+            . . . . 9 9 . . 9 9 . . . . . . . 9 . . . . . . . . . . . . . . . . . . 9 9 . . 9 . . . . . . . . . . . . . . . 9 . . . . . . .
+            . . . . 9 . . . . 9 . . . . . . . 9 . . . . . . . . . . . . . . . . . . 9 . . . . 9 . . . . . . . . . . . . . . 9 . . . . . . .
+            . . . . 9 . . . . . . . . . . . . 9 . . . . . . . . . . . . . . . . . . 9 . . . . 9 . . . . . . . . . . . . . . 9 . . . . . . .
+            . . . . 9 . . . . . . . . . . . . 9 . . . . . . 9 . . . . . . . . . . . 9 . . . 9 . . . . 9 . . . . . . . . . . 9 . . . . . . .
+            . . . . 9 . . . . . . . . . . . . 9 . . . . . . . . . . . . . . . . . . 9 . 9 9 . . . . . . . . . . . . . . . . 9 . . . . . . .
+            . . . . 9 . . . . . . 9 . . . 9 . 9 . 9 9 . . 9 9 . . 9 9 9 . . . . . . 9 . . . 9 9 . . 9 9 . 9 . 9 9 . . 9 9 . 9 . . . . . . .
+            . . . . 9 . . . . . . 9 . . . 9 . 9 . . . 9 . . 9 . 9 9 . 9 9 . . . . . 9 . . . . 9 9 . . 9 . 9 9 . . . 9 . . . 9 . . . . . . .
+            . . . . 9 . . . . . . 9 . . . 9 . 9 . . . 9 . . 9 . 9 . . . 9 . . . . . 9 . . . . . 9 . . 9 . 9 . . . . 9 . . . 9 . . . . . . .
+            . . . . 9 . . . . 9 . 9 . . . 9 . 9 . . . 9 . . 9 . 9 . . . . . . . . . 9 . . . . . 9 . . 9 . 9 . . . . 9 . . . 9 . . . . . . .
+            . . . . 9 . . . . 9 . 9 . . . 9 . 9 . . . 9 . . 9 . 9 . . . 9 . . . . . 9 . . . . . 9 . . 9 . 9 . . . . 9 . . . 9 . . . . . . .
+            . . . . 9 9 . . 9 9 . 9 9 . 9 9 . 9 9 . 9 9 . . 9 . 9 9 . 9 9 . . . . . 9 . . . . 9 9 . . 9 . 9 . . . . 9 9 . 9 9 . . . . . . .
+            . . . . . 9 9 9 9 . . . 9 9 9 . . . 9 9 9 . . . 9 . . 9 9 9 . . . . . . 9 . 9 9 9 9 . . . 9 . 9 . . . . . 9 9 9 . . . . . . . .
+        `
+
+        scene.backgroundImage().drawTransparentImage(cubicbirdLogo, 48, 36)
     }
 
     function drawTriangle() {
@@ -70,17 +92,17 @@ namespace gamejam {
 
     function drawIntro() {  
         drawBackground()
-        scene.backgroundImage().printCenter('Cubicbird Game Jam', 50, 2, image.font8)
+        scene.backgroundImage().printCenter('presents', 50, 2, image.font8)
 
         drawTriangle()
 
-        scene.backgroundImage().fillRect(80 - image.font8.charWidth * 2 - 1, 69, image.font8.charWidth * 4 + 2, image.font8.charHeight + 2, 12)
-        scene.backgroundImage().fillRect(80 - image.font8.charWidth * 2, 70, image.font8.charWidth * 4, image.font8.charHeight, 1)
+        scene.backgroundImage().fillRect(80 - image.font8.charWidth * 2 - 1, 74, image.font8.charWidth * 4 + 2, image.font8.charHeight + 2, 12)
+        scene.backgroundImage().fillRect(80 - image.font8.charWidth * 2, 75, image.font8.charWidth * 4, image.font8.charHeight, 1)
 
-        scene.backgroundImage().printCenter(' -- Room -- ', 70, 12, image.font8)
+        scene.backgroundImage().printCenter(' -- ROOMs-- ', 75, 12, image.font8)
         
 
-        scene.backgroundImage().printCenter('Press Any Button', 90, 2, image.font8)
+        scene.backgroundImage().printCenter('- Press Any Button -', 90, 2, image.font8)
         game.waitAnyButton()
         scene.backgroundImage().fill(0)
     }
@@ -91,7 +113,7 @@ namespace gamejam {
         scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
         scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
         scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
-        scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
+        scene.backgroundImage().printCenter('- Press Any Button -', 100, 2, image.font8)
         game.waitAnyButton()
         scene.backgroundImage().fill(0)
     }
