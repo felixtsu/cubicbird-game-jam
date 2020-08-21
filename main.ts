@@ -85,14 +85,19 @@ namespace gamejam {
     }
 
     export function drawNextRoom(author:string, roomTitle:string) {
-        drawBackground()
-        scene.backgroundImage().printCenter(author, 40, 2, image.font12)
-        scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
-        scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
-        scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
-        scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
+        let painting = true
+        game.onPaint(function() {
+            if (painting)
+            drawBackground()
+            scene.backgroundImage().printCenter(author, 40, 2, image.font12)
+            scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
+            scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
+            scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
+            scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
+            scene.backgroundImage().fill(0)
+        }) 
         game.waitAnyButton()
-        scene.backgroundImage().fill(0)
+        painting = false
     }
 
     export function registerRoom(handler :()=>void) {
