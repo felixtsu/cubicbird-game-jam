@@ -85,21 +85,29 @@ namespace gamejam {
     }
 
     export function drawNextRoom(author:string, roomTitle:string) {
-        let painting = true
-        scene.createRenderable(1000, target => {
-            if (painting) {
-                tiles.setTilemap(tilemap`level`)
-                drawBackground()
-                scene.backgroundImage().printCenter(author, 40, 2, image.font12)
-                scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
-                scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
-                scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
-                scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
-            }
-        }) 
+        drawBackground()
+        scene.backgroundImage().printCenter(author, 40, 2, image.font12)
+        scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
+        scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
+        scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
+        scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
         game.waitAnyButton()
         scene.backgroundImage().fill(0)
-        painting = false
+        // let painting = true
+        // scene.createRenderable(1000, target => {
+        //     if (painting) {
+        //         tiles.setTilemap(tilemap`level`)
+        //         drawBackground()
+        //         scene.backgroundImage().printCenter(author, 40, 2, image.font12)
+        //         scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
+        //         scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
+        //         scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
+        //         scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
+        //     }
+        // }) 
+        // game.waitAnyButton()
+        // scene.backgroundImage().fill(0)
+        // painting = false
     }
 
     export function registerRoom(handler :()=>void) {
