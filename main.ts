@@ -1,8 +1,19 @@
 namespace gamejam {
     let counter:number
-    let handlers:(()=>void)[] = []
+    // let handlers:(()=>void)[] = []
+    let rooms:Room[] = []
+    class Room {
 
-    function shuffle(array:(()=>void)[]) {
+        constructor(roomName:string, entryPoint:()=>void) {
+            this.roomName = roomName
+            this.roomEntryPoint = entryPoint
+        }
+
+        roomName :string;
+        roomEntryPoint: (() => void)
+    }
+
+    function shuffle(array:Room[]) {
         let counter = array.length;
 
         // While there are elements in the array
@@ -78,7 +89,6 @@ namespace gamejam {
 
         scene.backgroundImage().printCenter(' -- Room -- ', 70, 12, image.font8)
         
-
         scene.backgroundImage().printCenter('Press Any Button', 90, 2, image.font8)
         game.waitAnyButton()
         scene.backgroundImage().fill(0)
@@ -93,53 +103,46 @@ namespace gamejam {
         scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
         game.waitAnyButton()
         scene.backgroundImage().fill(0)
-        // let painting = true
-        // scene.createRenderable(1000, target => {
-        //     if (painting) {
-        //         tiles.setTilemap(tilemap`level`)
-        //         drawBackground()
-        //         scene.backgroundImage().printCenter(author, 40, 2, image.font12)
-        //         scene.backgroundImage().printCenter('presents', 60, 2, image.font8)
-        //         scene.backgroundImage().drawLine(80 - image.font8.charWidth * 4, 60 + image.font8.charHeight, 80 + image.font8.charWidth * 4, 60 + image.font8.charHeight, 2)
-        //         scene.backgroundImage().printCenter(roomTitle, 80, 12, image.font8)
-        //         scene.backgroundImage().printCenter('Press Any Button', 100, 2, image.font8)
-        //     }
-        // }) 
-        // game.waitAnyButton()
-        // scene.backgroundImage().fill(0)
-        // painting = false
     }
 
-    export function registerRoom(handler :()=>void) {
-        handlers.push(handler)
+    export function registerRoom(roomName:string, handler :()=>void) {
+        rooms.push(new Room(roomName, handler))
+        // handlers.push(handler)
     }
 
     export function startGameJam() {
         counter = 0
-        handlers = shuffle(handlers)
+        rooms = shuffle(rooms)
+        for (let room of rooms) {
+            storyboard.registerScene(room.roomName, room.roomEntryPoint)
+        }
+        
         drawIntro()
-        handlers[0]()
+
+        let firstRoom = rooms[0]
+        firstRoom.roomEntryPoint()
     }
 
     //%block
     export function roomFinished(win:boolean) {
         // clear all scheduled run later tasks
         runLaterHandlers = {}
-
+        control.runInParallel(function () {
         if (!win) {
             // restart current room
             // you die, try again
-            handlers[counter]()
+            storyboard.pop()
+            storyboard.replace(rooms[counter].roomName)
         } else {
-            if (counter == handlers.length - 1) {
+            if (counter == rooms.length - 1) {
                 game.over(true)
             } else {
                 counter ++
-                control.runInParallel(function() {
-                    handlers[counter]()    
-                })
+                storyboard.replace(rooms[counter].roomName)
+                    // rooms[counter].roomEntryPoint()    
+                }
             }
-        }
+        })
     }
 
     //%block
