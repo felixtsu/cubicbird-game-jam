@@ -132,7 +132,7 @@ namespace gamejam {
             // restart current room
             // you die, try again
             storyboard.pop()
-            storyboard.replace(rooms[counter].roomName)
+            storyboard.push(rooms[counter].roomName)
         } else {
             if (counter == rooms.length - 1) {
                 game.over(true)
